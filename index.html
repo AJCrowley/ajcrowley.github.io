@@ -461,6 +461,7 @@
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
+    <a href="#quickstart">Quick Start</a>
     <a href="#features">Features</a>
     <a href="#installation">Install</a>
     <a href="#usage">Usage</a>
@@ -529,6 +530,45 @@
     <p>That's the experience mpv-synth is built to deliver on Windows. <strong>Open a video file and it plays</strong>, full stop. No splash screens, no library to build, no window hanging around after playback ends. When there are no more videos to watch in a folder, the player closes itself. <strong>It knows its job is done.</strong></p>
   </div>
 </section>
+
+<!-- ══ QUICK START ══ -->
+<section id="quickstart">
+  <div class="section-label">Quick Start</div>
+  <h2>Up and running in less than a minute.</h2>
+  <div id="qs-install-player" class="tab-panel active">
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Download and extract</h3>
+          <p>Download the zip and extract it where you want the installation to live. <code>C:\Program Files\</code> is the recommended location.</p>
+          <p style="margin-top:16px">
+            <a href="https://github.com/AJCrowley/mpv-synth/releases/latest/download/mpv-synth.zip" class="btn btn-primary" style="font-size:14px; padding:10px 20px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download mpv-synth.zip
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Run INSTALL.BAT</h3>
+          <p>This single script downloads the latest versions of mpv, ffmpeg, ffprobe, yt-dlp, and VapourSynth; registers file associations; creates Start Menu and AutoPlay entries; then removes itself.</p>
+          <p><strong>The install is interactive</strong> — read the prompts as they appear. Defaults are set to the recommended choices throughout, with one exception: if your machine is more than roughly a decade old, choose <code>x86_64</code> at the first prompt rather than the default <code>x86_64-v3</code>. Any modern hardware should handle v3 fine.</p>
+        </div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Double-click a video</h3>
+          <p>mpv-synth registers itself as the default handler for common video formats. If Windows asks which app to use, select mpv-synth and tick <strong>"Always"</strong>. That's it — everything else is handled automatically from this point forward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ══ FEATURES ══ -->
 <section id="features">
@@ -604,7 +644,7 @@
         <div class="step-num">1</div>
         <div class="step-body">
           <h3>Download and extract</h3>
-          <p>Download the zip and extract it where you want the installation to live. <code>C:\Program Files\mpv-synth</code> is the recommended location.</p>
+          <p>Download the zip and extract it where you want the installation to live. <code>C:\Program Files\</code> is the recommended location.</p>
           <p style="margin-top:16px">
             <a href="https://github.com/AJCrowley/mpv-synth/releases/latest/download/mpv-synth.zip" class="btn btn-primary" style="font-size:14px; padding:10px 20px;">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
