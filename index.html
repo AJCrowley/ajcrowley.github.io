@@ -582,7 +582,7 @@
 <section id="features">
   <div class="section-label">What's included</div>
   <h2>Everything you actually need.<br />Nothing you don't.</h2>
-  <p class="lead reveal">mpv-synth is built on mpv — one of the most capable media engines in existence — and wraps it in the experience layer that was always missing. Also includes Chrome and Firefox extensions which add "Play in mpv-synth" to your browser's right-click menu. Right click a link and select Play link in mpv-synth, or right click the current page and select Play page in mpv-synth. A click routes any web video through the player, bypassing browser-based playback entirely.</p>
+  <p class="lead reveal">mpv-synth is built on mpv — one of the most capable media engines in existence — and wraps it in the experience layer that was always missing. Optional browser extensions for Chrome-family browsers and Firefox add a "Play in mpv-synth" right-click option to any link or page with embedded video, routing the stream directly through the player.</p>
 
   <div class="features-grid">
     <div class="feature-card reveal">
@@ -603,17 +603,17 @@
     <div class="feature-card reveal">
       <div class="feature-icon">📺</div>
       <h3>Auto-advance &amp; Resume</h3>
-      <p>When a video ends, mpv-synth moves to the next file in the folder automatically. When you quit mid-file, it resumes exactly where you stopped, it remembers your VapourSynth setting — no manual bookmarking required.</p>
+      <p>When a video ends, mpv-synth moves to the next file in the folder automatically. When you quit mid-file, it resumes exactly where you stopped — no manual bookmarking required.</p>
     </div>
     <div class="feature-card reveal reveal-delay-1">
-      <div class="feature-icon">🌐</div>
+      <div class="feature-icon">🔤</div>
       <h3>Smart Subtitle Selection</h3>
-      <p><code>auto-subs</code> plugin automatically selects subtitle tracks when all search terms in a comma separated list defined in <code>portable_config\script-opts\auto-subs.conf</code> are matched. Add as many or as few terms as you want to the <code>match</code> parameter, and a subtitle track will be auto-selected only if it matches all terms, useful for enabling Forced subtitle tracks, usually indicating multiple languages in a video.</p>
+      <p>The <code>auto-subs</code> plugin activates a subtitle track only when it matches <em>every</em> term in a configurable list — so <code>match=en,forced</code> picks up <em>English (Forced)</em> automatically, while leaving everything else untouched. Fine-grained, or one-word simple.</p>
     </div>
     <div class="feature-card reveal reveal-delay-2">
       <div class="feature-icon">🔄</div>
       <h3>Self-updating</h3>
-      <p>Press <kbd>U</kbd> from within the player to pull the latest versions of mpv, supporting binaries, mpv plugins, and even changes to the updater. The entire toolchain stays current with a single keypress. If you want to update without loading the player, just run the <code>updater.bat</code> script in the installation folder, no need to do anything but double-click, no tricks, it's all handled.</p>
+      <p>Press <kbd>U</kbd> from within the player to pull the latest versions of mpv, ffmpeg, yt-dlp, plugins, and the updater itself. The entire toolchain stays current with a single keypress — or run <code>updater.bat</code> directly without opening the player.</p>
     </div>
   </div>
 </section>
@@ -672,8 +672,25 @@
       <div class="step reveal reveal-delay-2">
         <div class="step-num">3</div>
         <div class="step-body">
-          <h3>Setup for your native language</h3>
-          <p>The system is set for English by default. If this is not your first language, edit the <code>portable_config\mpv.conf</code> file and set your language codes in the <code>alang</code> parameter for audio, and <code>slang</code> for subtitles. If you want subtitles to be on by default, you can either set <code>sid=yes</code> in mpv.conf, or go into <code>portable_config\script-opts\auto-sub.conf</code> and add your terms to the <code>match</code> parameter. A subtitle track will only be automatically activated if it matches every item in this comma separated list (no spaces), so the default <code>match=en,forced</code> will select the first subtitle track that matches both of those, usually being something along the lines of <code>English (Forced)</code>. You can have only a single value if you just want it to select your value, or build a complex filter that only turns on very specific subtitles. If you just want mpv to select your subtitles set <code>enabled=no</code> in <code>auto-subs.conf</code></p>
+          <h3>Set your language <span style="font-weight:400; color: var(--text-3); font-size: 14px;">(optional — English by default)</span></h3>
+          <p>Open <code>portable_config\mpv.conf</code> and set your preferred language codes:</p>
+          <pre style="margin-top: 12px; margin-bottom: 16px;"><code># preferred audio language
+alang=ja,jpn,en
+
+# preferred subtitle language
+slang=en,eng</code></pre>
+          <p>For subtitles to activate automatically, edit <code>portable_config\script-opts\auto-subs.conf</code> and set your match terms. A track is only selected if it matches <em>every</em> term in the list — so you can be as broad or as specific as you like:</p>
+          <pre style="margin-top: 12px; margin-bottom: 16px;"><code># English forced subs only (the default)
+match=en,forced
+
+# Any French subtitle track
+match=fr
+
+# Nothing auto-selects — mpv picks based on slang above
+enabled=no</code></pre>
+          <div class="callout" style="margin-top: 4px;">
+            The <code>match</code> list is comma-separated with no spaces. Each entry must appear somewhere in the subtitle track's name or language tag for it to be selected. The default <code>match=en,forced</code> targets tracks labelled something like <em>English (Forced)</em>.
+          </div>
         </div>
       </div>
       <div class="step reveal reveal-delay-3">
