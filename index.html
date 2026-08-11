@@ -12,8 +12,8 @@
     </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mpv-synth — A media player for Windows built for how people actually watch things</title>
-  <meta name="description" content="mpv-synth is a modern Windows media player with frame interpolation, automatic HDR colour management, a filmstrip timeline, and browser streaming integration." />
+  <title>mpv-synth: A media player for Windows built for how people actually watch things</title>
+  <meta name="description" content="mpv-synth is a modern Windows media player with frame interpolation, automatic HDR colour management, a filmstrip timeline, OpenSubtitles integration, and browser streaming." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -401,6 +401,13 @@
     .credit-card p { font-size: 13px; color: var(--text-2); line-height: 1.5; }
     .credit-card.original h4 { color: var(--text); }
     .credit-card.original { border-color: rgba(124,58,237,0.3); }
+    .credit-card .badge {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 2px 8px; border-radius: 100px; margin-bottom: 8px;
+    }
+    .credit-card .badge.original { background: var(--purple-dim); color: var(--purple-ll); border: 1px solid rgba(124,58,237,0.3); }
+    .credit-card .badge.modified { background: rgba(255,255,255,0.05); color: var(--text-2); border: 1px solid var(--border2); }
 
     /* ── Coffee / CTA ── */
     #support { border-top: 1px solid var(--border); }
@@ -488,9 +495,9 @@
     <div class="hero-badge"><span></span> Free &amp; open source · Windows</div>
     <h1>Media playback the way it<br /><em>should</em> work on Windows.</h1>
     <p class="hero-sub">
-      mpv-synth is a modern Windows media player with frame interpolation,
-      automatic HDR colour management, a filmstrip timeline, and one-click
-      browser streaming.
+      mpv-synth is a Windows media player built on mpv, with frame interpolation,
+      automatic HDR colour management, a filmstrip timeline, OpenSubtitles
+      integration, and one-click browser streaming.
     </p>
     <div class="hero-actions">
       <a href="https://github.com/AJCrowley/mpv-synth/releases/latest/download/mpv-synth.zip" class="btn btn-primary">
@@ -514,15 +521,15 @@
   <div class="section-label">The problem</div>
   <h2>Windows never got a great media player.</h2>
   <p class="lead reveal">
-    The third-party ecosystem hasn't kept pace with how people actually
-    consume media. The most popular options are functional, but they feel
-    like they were designed a decade ago — in most cases, they were.
+    The third-party ecosystem hasn't kept pace with how people watch things now.
+    The most popular options work, but they feel like they were designed a decade
+    ago, because they were.
   </p>
 
   <div class="problem-grid reveal">
     <div class="problem-cell">
       <h3>What you get</h3>
-      <p><strong>Clunky interfaces</strong> assembled from stock Windows form components. Windows that linger on your desktop doing nothing after playback ends. No memory of where you were in a file.</p>
+      <p><strong>Clunky interfaces</strong> assembled from stock Windows form components. Windows that sit on your desktop doing nothing after playback ends. No memory of where you were in a file.</p>
     </div>
     <div class="problem-cell">
       <h3>What's missing</h3>
@@ -530,12 +537,12 @@
     </div>
     <div class="problem-cell full">
       <h3>Compare it to your phone</h3>
-      <p>You open a file — it plays. When it's done, it's done. It just gets out of the way. There's no application to wrangle. It feels like a natural feature that should be part of any modern operating system.</p>
+      <p>You open a file and it plays. When it's done, it's done. It gets out of the way. There's no application to wrangle. It feels like a feature that should be part of any modern operating system.</p>
     </div>
   </div>
 
   <div class="contrast-block reveal reveal-delay-1">
-    <p>That's the experience mpv-synth is built to deliver on Windows. <strong>Open a video file and it plays</strong>, full stop. No splash screens, no library to build, no window hanging around after playback ends. When there are no more videos to watch in a folder, the player closes itself. <strong>It knows its job is done.</strong></p>
+    <p>That's the experience mpv-synth delivers on Windows. <strong>Open a video file and it plays</strong>, full stop. No splash screens, no library to build, no window hanging around after playback ends. When there are no more videos to watch in a folder, the player closes itself. <strong>It knows its job is done.</strong></p>
   </div>
 </section>
 
@@ -563,14 +570,14 @@
         <div class="step-body">
           <h3>Run INSTALL.BAT (or right click and Run as Administrator in Windows 10)</h3>
           <p>This single script downloads the latest versions of mpv, ffmpeg, ffprobe, yt-dlp, and VapourSynth<sup>*</sup>; registers file associations; creates Start Menu and AutoPlay entries; then removes itself.</p>
-          <p><strong>The install is interactive</strong> — read the prompts as they appear. Defaults are set to the recommended choices throughout, with one exception: if your machine is more than roughly a decade old, choose <code>x86_64</code> at the first prompt rather than the default <code>x86_64-v3</code>. Any modern hardware should handle v3 fine.</p>
+          <p><strong>The install is interactive</strong>. Read the prompts as they appear. Defaults are set to the recommended choices throughout, with one exception: if your machine is more than roughly a decade old, choose <code>x86_64</code> at the first prompt rather than the default <code>x86_64-v3</code>. Any modern hardware should handle v3 fine.</p>
         </div>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">3</div>
         <div class="step-body">
           <h3>Double-click a video</h3>
-          <p>mpv-synth registers itself as the default handler for common video formats. If Windows asks which app to use, select mpv-synth and tick <strong>"Always"</strong>. That's it — everything else is handled automatically from this point forward.</p>
+          <p>mpv-synth registers itself as the default handler for common video formats. If Windows asks which app to use, select mpv-synth and tick <strong>"Always"</strong>. That's it. Everything else is handled automatically from this point forward.</p>
         </div>
       </div>
     </div>
@@ -582,38 +589,53 @@
 <section id="features">
   <div class="section-label">What's included</div>
   <h2>Everything you actually need.<br />Nothing you don't.</h2>
-  <p class="lead reveal">mpv-synth is built on mpv — one of the most capable media engines in existence — and wraps it in the experience layer that was always missing. Optional browser extensions for Chrome-family browsers and Firefox add a "Play in mpv-synth" right-click option to any link or page with embedded video, routing the stream directly through the player.</p>
+  <p class="lead reveal">mpv-synth is built on mpv, one of the most capable media engines around, and wraps it in the experience layer that was always missing. Optional browser extensions for Chrome-family browsers and Firefox add a "Play in mpv-synth" right-click option to any link or page with embedded video, routing the stream directly through the player.</p>
 
   <div class="features-grid">
     <div class="feature-card reveal">
       <div class="feature-icon">⚡</div>
       <h3>Frame Interpolation</h3>
-      <p>Full VapourSynth pipeline powering buttery-smooth playback at 30, 60, 90, 120, or 144fps. Switch presets from the right-click menu or a keypress. Entirely optional — the player is equally happy without it.</p>
+      <p>Full VapourSynth pipeline. Feed it any framerate. Match your display's refresh rate, stick to 60fps, or push 144. The presets in the right-click menu are just numbers in a config file: change them, add more, remove ones you don't need. Set it to activate automatically and limit by resolution, if your GPU handles 1080p fine but struggles at 4K, set a max resolution and it only kicks in below that. Entirely optional → the player works fine without it.</p>
     </div>
     <div class="feature-card reveal reveal-delay-1">
       <div class="feature-icon">🎨</div>
       <h3>Automatic Colour Management</h3>
-      <p>ICC-detect reads the colour space and HDR metadata of every file on load. HDR content is passed through natively on capable displays and tone-mapped correctly on SDR — automatically, every time.</p>
+      <p>The icc-detect plugin reads the colour space and HDR metadata of every file on load. HDR content passes through natively on capable displays and tone-maps correctly on SDR, automatically, every time.</p>
     </div>
     <div class="feature-card reveal reveal-delay-2">
       <div class="feature-icon">🎞</div>
       <h3>Filmstrip Timeline</h3>
-      <p>150 evenly-spaced thumbnail slices composited into the seekbar, giving you an at-a-glance map of the entire file. Hover for a frame-accurate preview. Jump to any scene with a click.</p>
+      <p>150 evenly-spaced thumbnail slices by default, have as many or as few as you like to achieve your best look, composited into the seekbar, giving you a visual map of the entire file. Hover for a frame-accurate preview. Jump to any scene with a click.</p>
     </div>
     <div class="feature-card reveal">
       <div class="feature-icon">📺</div>
       <h3>Auto-advance &amp; Resume</h3>
-      <p>When a video ends, mpv-synth moves to the next file in the folder automatically. When you quit mid-file, it resumes exactly where you stopped — no manual bookmarking required.</p>
+      <p>When a video ends, mpv-synth moves to the next file in the folder automatically → when you quit mid-file, it resumes exactly where you stopped. No manual bookmarking required.</p>
     </div>
     <div class="feature-card reveal reveal-delay-1">
       <div class="feature-icon">🔤</div>
       <h3>Smart Subtitle Selection</h3>
-      <p>The <code>auto-subs</code> plugin activates a subtitle track only when it matches <em>every</em> term in a configurable list — so <code>match=en,forced</code> picks up <em>English (Forced)</em> automatically, while leaving everything else untouched. Fine-grained, or one-word simple.</p>
+      <p>The auto-subs plugin activates a subtitle track only when it matches <em>every</em> term in a configurable list → <code>match=en,forced</code> picks up <em>English (Forced)</em> automatically, while leaving everything else untouched. Fine-grained, or one-word simple.</p>
+    </div>
+    <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-icon">💬</div>
+      <h3>OpenSubtitles Integration</h3>
+      <p>The opensubs plugin searches and downloads subtitles from OpenSubtitles and other providers directly from the right-click menu. Manual search, best-match download, or browse results, all without leaving the player. Supports login credentials for premium providers.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎛</div>
+      <h3>Simplified On-Screen Controls</h3>
+      <p>The osc-simplified plugin replaces mpv's default OSC with a clean, minimal control bar. Configurable skip buttons (left, right, middle click, each with its own seek duration), dark and light modes, and rounded corners. No clutter.</p>
+    </div>
+    <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-icon">📋</div>
+      <h3>Dynamic Right-Click Menu</h3>
+      <p>The dyn_menu plugin builds a native Windows context menu from your input.conf bindings. Every shortcut you define appears in the menu automatically, organized by the menu path you specify. No separate menu config to maintain.</p>
     </div>
     <div class="feature-card reveal reveal-delay-2">
       <div class="feature-icon">🔄</div>
       <h3>Self-updating</h3>
-      <p>Press <kbd>U</kbd> from within the player to pull the latest versions of mpv, ffmpeg, yt-dlp, plugins, and the updater itself. The entire toolchain stays current with a single keypress — or run <code>updater.bat</code> directly without opening the player.</p>
+      <p>Press <kbd>U</kbd> from within the player to pull the latest versions of mpv, ffmpeg, yt-dlp, plugins, and the updater itself. The entire toolchain stays current with a single keypress, or run <code>updater.bat</code> directly without opening the player.</p>
     </div>
   </div>
 </section>
@@ -626,11 +648,33 @@
   <div class="screenshot-pair reveal">
     <figure class="screenshot-item">
       <img src="screenshot.png" alt="mpv-synth playing a local video file with filmstrip timeline" />
-      <figcaption><strong>Local playback</strong> — filmstrip timeline, hover thumbnail, VapourSynth active at 120fps</figcaption>
+      <figcaption><strong>Local playback</strong> → filmstrip timeline, hover thumbnail, VapourSynth active at 120fps</figcaption>
     </figure>
     <figure class="screenshot-item">
       <img src="screenshot-web.png" alt="mpv-synth streaming a YouTube video via the browser extension" />
-      <figcaption><strong>Web streaming</strong> — browser extension routing a YouTube video through the player</figcaption>
+      <figcaption><strong>Web streaming</strong> → browser extension routing a YouTube video through the player</figcaption>
+    </figure>
+  </div>
+
+  <div class="screenshot-pair reveal" style="margin-top: 24px;">
+    <figure class="screenshot-item">
+      <img src="screenshot-menu.png" alt="mpv-synth right-click context menu" />
+      <figcaption><strong>Context menu</strong> → dyn_menu generating a native Windows menu from input.conf</figcaption>
+    </figure>
+    <figure class="screenshot-item">
+      <img src="screenshot-opensubs.png" alt="mpv-synth filmstrip timeline with thumbfast preview and osc-simplified controls" />
+      <figcaption><strong>Filmstrip &amp; controls</strong> → thumbfast preview hovering the timeline, osc-simplified pop-up controls</figcaption>
+    </figure>
+  </div>
+
+  <div class="screenshot-pair reveal" style="margin-top: 24px;">
+    <figure class="screenshot-item">
+      <img src="screenshot-subs.png" alt="Subtitle track selection in mpv-synth" />
+      <figcaption><strong>Subtitle browsing</strong> → OpenSubtitles results with track selection</figcaption>
+    </figure>
+    <figure class="screenshot-item">
+      <img src="screenshot-stats.png" alt="mpv-synth statistics overlay" />
+      <figcaption><strong>Statistics overlay</strong> → press <kbd>t</kbd> for real-time playback diagnostics</figcaption>
     </figure>
   </div>
 </section>
@@ -639,7 +683,7 @@
 <section id="installation">
   <div class="section-label">Installation</div>
   <h2>Up and running in minutes.</h2>
-  <p class="lead reveal">The installer handles all dependencies — mpv, ffmpeg, VapourSynth, and the interpolation libraries — automatically.</p>
+  <p class="lead reveal">The installer handles all dependencies: mpv, ffmpeg, VapourSynth, and the interpolation libraries, automatically.</p>
 
   <div class="tabs reveal" role="tablist">
     <button class="tab-btn active" data-tab="install-player" role="tab">mpv-synth</button>
@@ -666,27 +710,27 @@
         <div class="step-body">
           <h3>Run INSTALL.BAT (or right click and Run as Administrator in Windows 10)</h3>
           <p>This single script downloads the latest versions of mpv, ffmpeg, ffprobe, yt-dlp, and VapourSynth<sup>*</sup>; registers file associations; creates Start Menu and AutoPlay entries; then removes itself.</p>
-          <p><strong>The install is interactive</strong> — read the prompts as they appear. Defaults are set to the recommended choices throughout, with one exception: if your machine is more than roughly a decade old, choose <code>x86_64</code> at the first prompt rather than the default <code>x86_64-v3</code>. Any modern hardware should handle v3 fine.</p>
+          <p><strong>The install is interactive</strong>. Read the prompts as they appear. Defaults are set to the recommended choices throughout, with one exception: if your machine is more than roughly a decade old, choose <code>x86_64</code> at the first prompt rather than the default <code>x86_64-v3</code>. Any modern hardware should handle v3 fine.</p>
         </div>
       </div>
       <div class="step reveal reveal-delay-2">
         <div class="step-num">3</div>
         <div class="step-body">
-          <h3>Set your language <span style="font-weight:400; color: var(--text-3); font-size: 14px;">(optional — English by default)</span></h3>
+          <h3>Set your language <span style="font-weight:400; color: var(--text-3); font-size: 14px;">(optional, English by default)</span></h3>
           <p>Open <code>portable_config\mpv.conf</code> and set your preferred language codes:</p>
           <pre style="margin-top: 12px; margin-bottom: 16px;"><code># preferred audio language
 alang=ja,jpn,en
 
 # preferred subtitle language
 slang=en,eng</code></pre>
-          <p>For subtitles to activate automatically, edit <code>portable_config\script-opts\auto-subs.conf</code> and set your match terms. A track is only selected if it matches <em>every</em> term in the list — so you can be as broad or as specific as you like:</p>
+          <p>For subtitles to activate automatically, edit <code>portable_config\script-opts\auto-subs.conf</code> and set your match terms. A track is only selected if it matches <em>every</em> term in the list, so you can be as broad or as specific as you like:</p>
           <pre style="margin-top: 12px; margin-bottom: 16px;"><code># English forced subs only (the default)
 match=en,forced
 
 # Any French subtitle track
 match=fr
 
-# Nothing auto-selects — mpv picks based on slang above
+# Nothing auto-selects. mpv picks based on slang above
 enabled=no</code></pre>
           <div class="callout" style="margin-top: 4px;">
             The <code>match</code> list is comma-separated with no spaces. Each entry must appear somewhere in the subtitle track's name or language tag for it to be selected. The default <code>match=en,forced</code> targets tracks labelled something like <em>English (Forced)</em>.
@@ -697,7 +741,7 @@ enabled=no</code></pre>
         <div class="step-num">4</div>
         <div class="step-body">
           <h3>Double-click a video</h3>
-          <p>mpv-synth registers itself as the default handler for common video formats. If Windows asks which app to use, select mpv-synth and tick <strong>"Always"</strong>. That's it — everything else is handled automatically from this point forward.</p>
+          <p>mpv-synth registers itself as the default handler for common video formats. If Windows asks which app to use, select mpv-synth and tick <strong>"Always"</strong>. That's it. Everything else is handled automatically from this point forward.</p>
         </div>
       </div>
     </div>
@@ -710,7 +754,7 @@ enabled=no</code></pre>
 
   <div id="install-ext" class="tab-panel">
     <p class="reveal" style="color: var(--text-2); margin-bottom: 28px; font-size: 15px;">
-      The browser extensions are completely optional — mpv-synth works perfectly as a local player without them. They add a "Play in mpv-synth" right-click option to any page with embedded video in Chrome-family browsers and Firefox.
+      The browser extensions are completely optional. mpv-synth works perfectly as a local player without them. They add a "Play in mpv-synth" right-click option to any page with embedded video in Chrome-family browsers and Firefox.
     </p>
 
     <div class="steps">
@@ -720,7 +764,7 @@ enabled=no</code></pre>
           <h3>Install the native messaging host</h3>
           <p>Extract <code>installer\mpv-synth-extension.zip</code> in place. Then, inside the <code>native\</code> folder, right-click <strong>install.bat</strong> and choose "Run as Administrator". This registers the Python host that allows the browser to securely launch mpv. You only need to do this once.</p>
           <div class="callout" style="margin-top: 12px;">
-            <strong>Prerequisite:</strong> Python 3 must be installed and on your PATH. Download from <a href="https://www.python.org/downloads/" target="_blank" style="color: var(--purple-ll);">python.org</a> — make sure to check "Add Python to PATH" during installation.
+            <strong>Prerequisite:</strong> Python 3 must be installed and on your PATH. Download from <a href="https://www.python.org/downloads/" target="_blank" style="color: var(--purple-ll);">python.org</a>. Make sure to check "Add Python to PATH" during installation.
           </div>
         </div>
       </div>
@@ -749,7 +793,7 @@ enabled=no</code></pre>
     </div>
 
     <div class="callout reveal" style="margin-top: 24px;">
-      <strong>Note:</strong> Extensions are currently distributed for developer-mode installation rather than through browser extension stores. This sounds more technical than it is — the walkthrough above covers everything, and it takes under a minute. If demand grows, formal store publication will follow.
+      <strong>Note:</strong> Extensions are currently distributed for developer-mode installation rather than through browser extension stores. This sounds more technical than it is. The walkthrough above covers everything, and it takes under a minute. If demand grows, formal store publication will follow.
     </div>
   </div>
 </section>
@@ -773,7 +817,7 @@ enabled=no</code></pre>
         <tbody>
           <tr><td><kbd>Escape</kbd></td><td>Toggle fullscreen</td></tr>
           <tr><td><kbd>Space</kbd></td><td>Play / Pause</td></tr>
-          <tr><td><kbd>q</kbd></td><td>Quit — position saved automatically</td></tr>
+          <tr><td><kbd>q</kbd></td><td>Quit → position saved automatically</td></tr>
           <tr><td><kbd>← →</kbd></td><td>Seek 5 seconds; hold <kbd>Ctrl</kbd> for 5 minutes</td></tr>
           <tr><td><kbd>↑ ↓</kbd></td><td>Seek 30 seconds forward / back</td></tr>
           <tr><td><kbd>a</kbd> / <kbd>d</kbd></td><td>Previous / next chapter</td></tr>
@@ -785,9 +829,17 @@ enabled=no</code></pre>
           <tr><td><kbd>-</kbd> / <kbd>=</kbd></td><td>Volume down / up</td></tr>
           <tr><td><kbd>v</kbd></td><td>Toggle subtitle visibility</td></tr>
           <tr><td><kbd>Ctrl+v</kbd></td><td>Cycle subtitle tracks</td></tr>
+          <tr><td><kbd>Shift+s</kbd></td><td>Browse OpenSubtitles</td></tr>
+          <tr><td><kbd>Alt+t</kbd></td><td>Download best-match subtitles from OpenSubtitles</td></tr>
+          <tr><td><kbd>Alt+s</kbd></td><td>Manual OpenSubtitles search</td></tr>
+          <tr><td><kbd>Ctrl+i</kbd></td><td>Toggle automatic ICC profile detection</td></tr>
+          <tr><td><kbd>Alt+`</kbd></td><td>VapourSynth off</td></tr>
+          <tr><td><kbd>Alt+5</kbd></td><td>VapourSynth 60fps</td></tr>
+          <tr><td><kbd>Alt+8</kbd></td><td>VapourSynth 120fps</td></tr>
           <tr><td><kbd>I</kbd></td><td>Edit keyboard bindings &amp; menu</td></tr>
-          <tr><td><kbd>M</kbd></td><td>Edit player configuration</td></tr>
+          <tr><td><kbd>E</kbd></td><td>Edit player configuration</td></tr>
           <tr><td><kbd>U</kbd></td><td>Update all components (mpv, ffmpeg, yt-dlp…)</td></tr>
+          <tr><td><kbd>t</kbd></td><td>Toggle statistics overlay</td></tr>
         </tbody>
       </table>
     </div>
@@ -802,22 +854,22 @@ enabled=no</code></pre>
     <p class="reveal" style="color: var(--text-2); font-size: 15px; margin: 16px 0;">For example:</p>
     <pre class="reveal"><code>Right    seek 60    #menu: Navigate &gt; Skip &gt; 1 min forward</code></pre>
     <div class="callout reveal" style="margin-top: 16px;">
-      The <code>#menu:</code> portion is optional — omit it for a binding with no menu entry. Use <code>_</code> as the key for a menu entry with no keyboard shortcut. Each <code>&gt;</code> adds a submenu level. Open the file via Tools → Edit Config in the right-click menu, or press <kbd>I</kbd>.
+      The <code>#menu:</code> portion is optional → omit it for a binding with no menu entry. Use <code>_</code> as the key for a menu entry with no keyboard shortcut. Each <code>&gt;</code> adds a submenu level. Open the file via Tools → Edit Config in the right-click menu, or press <kbd>I</kbd>.
     </div>
     <p class="reveal" style="color: var(--text-2); font-size: 14px; margin-top: 20px;">
-      All plugin options live in <code>portable_config\script-opts\</code> — one <code>.conf</code> file per plugin, named accordingly. The main player options are in <code>portable_config\mpv.conf</code>.
+      All plugin options live in <code>portable_config\script-opts\</code>, one <code>.conf</code> file per plugin, named accordingly. The main player options are in <code>portable_config\mpv.conf</code>. Each setting includes a comment describing what it does and its type, so you can edit them in any text editor.
     </p>
   </div>
 
   <div id="usage-filmstrip" class="tab-panel">
     <p class="reveal" style="color: var(--text-2); font-size: 15px; margin-bottom: 24px;">
-      The filmstrip defaults to <strong style="color: var(--text)">150 thumbnails</strong> generated across <strong style="color: var(--text)">4 concurrent threads</strong>. This gives a dense, visually rich timeline and runs smoothly on modest hardware — tested on a 65W Ryzen 7 mini-PC.
+      The filmstrip defaults to <strong style="color: var(--text)">150 thumbnails</strong> generated across <strong style="color: var(--text)">4 concurrent threads</strong>. This gives a dense, visually rich timeline and runs smoothly on modest hardware, tested on a 65W Ryzen 7 mini-PC.
     </p>
     <pre class="reveal"><code># portable_config\script-opts\filmstrip.conf
 thumbnail_count=150
 max_concurrent=4</code></pre>
     <div class="callout reveal" style="margin-top: 16px;">
-      If generation impacts playback, reduce <code>max_concurrent</code> to 2 or 1 — thumbnails will build more slowly, but playback won't be affected. <code>thumbnail_count=100</code> still looks great. Set <code>thumbnail_count=0</code> or <code>enabled=no</code> to disable the filmstrip entirely.
+      If generation impacts playback, reduce <code>max_concurrent</code> to 2 or 1 → thumbnails will build more slowly, but playback won't be affected. <code>thumbnail_count=100</code> still looks great. Every plugin written for mpv-synth can be disabled with <code>enabled=no</code> at the top of its conf file.
     </div>
   </div>
 </section>
@@ -826,42 +878,81 @@ max_concurrent=4</code></pre>
 <section id="acknowledgements">
   <div class="section-label">Standing on shoulders</div>
   <h2>Built on exceptional open source work.</h2>
-  <p class="lead reveal">Several bundled components are used in modified form — patched for reliability, this setup's specific quirks, or to resolve issues found during testing.</p>
+  <p class="lead reveal">Several plugins were written from scratch for mpv-synth. Others are bundled from open source projects, some modified for reliability or to resolve issues found during testing.</p>
 
   <div class="credit-grid">
     <a href="https://github.com/mpv-player/mpv" target="_blank" class="credit-card original reveal">
+      <span class="badge original">Core</span>
       <h4>mpv</h4>
       <p>The player at the core of everything. Extraordinarily capable, extraordinarily extensible.</p>
     </a>
     <a href="https://github.com/stax76/mpv-hero/" target="_blank" class="credit-card reveal reveal-delay-1">
+      <span class="badge modified">Inspiration</span>
       <h4>mpv-hero</h4>
       <p>The starting point and inspiration for this project.</p>
     </a>
-    <a href="https://github.com/vapoursynth/vapoursynth" target="_blank" class="credit-card reveal reveal-delay-2">
+    <a href="https://github.com/AJCrowley/mpv-synth" target="_blank" class="credit-card reveal reveal-delay-2">
+      <span class="badge original">Original</span>
+      <h4>auto-subs</h4>
+      <p>Automatic subtitle selection based on configurable match terms. Written for mpv-synth.</p>
+    </a>
+    <a href="https://github.com/AJCrowley/mpv-synth" target="_blank" class="credit-card reveal">
+      <span class="badge original">Original</span>
+      <h4>opensubs</h4>
+      <p>OpenSubtitles search and download directly from the player. Supports multiple providers with optional login credentials.</p>
+    </a>
+    <a href="https://github.com/AJCrowley/mpv-synth" target="_blank" class="credit-card reveal reveal-delay-1">
+      <span class="badge original">Original</span>
+      <h4>filmstrip</h4>
+      <p>Filmstrip timeline. 150 thumbnail slices composited into the seekbar with configurable generation and animation.</p>
+    </a>
+    <a href="https://github.com/AJCrowley/mpv-synth" target="_blank" class="credit-card reveal reveal-delay-2">
+      <span class="badge original">Original</span>
+      <h4>icc-detect</h4>
+      <p>Automatic ICC profile and HDR detection. Tone-maps HDR content on SDR displays using configurable algorithms.</p>
+    </a>
+    <a href="https://github.com/AJCrowley/mpv-synth" target="_blank" class="credit-card reveal">
+      <span class="badge original">Original</span>
+      <h4>osc-simplified</h4>
+      <p>Minimal on-screen control bar with configurable skip buttons, dark/light modes, and rounded corners.</p>
+    </a>
+    <a href="https://github.com/tsl0922/mpv-menu-plugin" target="_blank" class="credit-card reveal reveal-delay-1">
+      <span class="badge modified">Modified</span>
+      <h4>dyn_menu</h4>
+      <p>Dynamic right-click menu generated from input.conf bindings. Modified from the original mpv-menu-plugin for reliability.</p>
+    </a>
+    <a href="https://github.com/AJCrowley/mpv-synth" target="_blank" class="credit-card reveal reveal-delay-2">
+      <span class="badge original">Original</span>
+      <h4>vapoursynth</h4>
+      <p>Frame interpolation integration. VapourSynth filter management with configurable FPS presets and auto-apply rules.</p>
+    </a>
+    <a href="https://github.com/vapoursynth/vapoursynth" target="_blank" class="credit-card reveal">
+      <span class="badge modified">Bundled</span>
       <h4>VapourSynth</h4>
       <p>The frame processing framework powering interpolation.</p>
     </a>
-    <a href="https://github.com/tomasklaen/uosc" target="_blank" class="credit-card reveal">
+    <a href="https://github.com/tomasklaen/uosc" target="_blank" class="credit-card reveal reveal-delay-1">
+      <span class="badge modified">Bundled</span>
       <h4>uosc</h4>
       <p>The interface layer. The de facto standard for mpv UI.</p>
     </a>
-    <a href="https://github.com/tsl0922/mpv-menu-plugin" target="_blank" class="credit-card reveal reveal-delay-1">
-      <h4>mpv-menu-plugin</h4>
-      <p>Native Windows right-click menu integration. Modified for this setup.</p>
-    </a>
-    <a href="https://github.com/po5/thumbfast" target="_blank" class="credit-card reveal reveal-delay-2">
+    <a href="https://github.com/po5/thumbfast" target="_blank" class="credit-card reveal">
+      <span class="badge modified">Modified</span>
       <h4>thumbfast</h4>
-      <p>Timeline hover thumbnails. Modified — stall watchdog added for reliability.</p>
+      <p>Timeline hover thumbnails. Heavily modified → stall watchdog added, filmstrip integration, configurable process priority.</p>
     </a>
-    <a href="https://github.com/rossy/mpv-open-file-dialog" target="_blank" class="credit-card reveal">
+    <a href="https://github.com/rossy/mpv-open-file-dialog" target="_blank" class="credit-card reveal reveal-delay-1">
+      <span class="badge original">Original</span>
       <h4>open-file-dialog</h4>
       <p>Native Windows file/folder open dialog integration.</p>
     </a>
-    <a href="https://github.com/natural-harmonia-gropius/recent-menu" target="_blank" class="credit-card reveal reveal-delay-1">
+    <a href="https://github.com/natural-harmonia-gropius/recent-menu" target="_blank" class="credit-card reveal reveal-delay-2">
+      <span class="badge modified">Bundled</span>
       <h4>recent-menu</h4>
       <p>Recently played files list.</p>
     </a>
-    <a href="https://github.com/bjaan/" target="_blank" class="credit-card reveal reveal-delay-2">
+    <a href="https://github.com/bjaan/" target="_blank" class="credit-card reveal">
+      <span class="badge modified">Bundled</span>
       <h4>bjaan</h4>
       <p>Libraries for VapourSynth integration and interpolation.</p>
     </a>
@@ -872,16 +963,26 @@ max_concurrent=4</code></pre>
 <section id="support">
   <div class="coffee-block reveal">
     <div class="section-label" style="margin-bottom:20px">Support</div>
-    <h2 style="margin-bottom: 20px;">If it's been useful, a coffee means a lot.</h2>
+    <h2 style="margin-bottom: 20px;">Free, forever. But time isn't.</h2>
     <p>
-      This started as a simple integration project and turned into months of
-      debugging Lua timing races, writing plugins from scratch, and learning the
-      internals of a rendering pipeline I didn't know existed. The software is free.
-      If you've gotten anything out of it, I'd genuinely appreciate the gesture.
+      mpv-synth is and always will be free. No premium tier, no feature gates,
+      no ads. The code is on GitHub for anyone to read, fork, or contribute to.
+    </p>
+    <p style="margin-top: 16px;">
+      What it isn't is cost-free to build. The plugins, the bug hunts, the
+      rendering pipeline deep dives. That's real time, and time is the one
+      thing you can't get back. A small donation says "keep going" in a way
+      that matters more than a star.
+    </p>
+    <p style="margin-top: 16px;">
+      If mpv-synth has been useful, that's enough. If you'd like to see it grow
+      faster → a proper GUI for managing settings without touching conf files,
+      more plugins, better documentation, then a coffee helps make that happen
+      sooner rather than later.
     </p>
     <div class="coffee-actions">
       <a href="https://buymeacoffee.com/ajcrowley" target="_blank" class="btn btn-primary">
-        ☕ Buy me a coffee
+        ☕ Support development
       </a>
       <a href="https://github.com/AJCrowley/mpv-synth/issues" target="_blank" class="btn btn-secondary">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -891,6 +992,35 @@ max_concurrent=4</code></pre>
         <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         Source code
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROADMAP ══ -->
+<section id="roadmap" style="border-top: 1px solid var(--border);">
+  <div class="section-label">What's next</div>
+  <h2>Roadmap.</h2>
+  <div class="steps" style="margin-top: 48px;">
+    <div class="step reveal">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <h3>Now → Player &amp; plugins</h3>
+        <p>The core player is stable and in daily use. Plugins are actively maintained. If something's broken, <a href="https://github.com/AJCrowley/mpv-synth/issues" target="_blank" style="color: var(--purple-ll);">open an issue</a>.</p>
+      </div>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <h3>Autumn → GUI testing</h3>
+        <p>A Tauri-based GUI is in development to manage settings, updates, and plugins without touching conf files. Internal testing begins this autumn.</p>
+      </div>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <h3>After testing → Full release</h3>
+        <p>Barring paid work getting in the way, a full public GUI release should follow, aimed at users of all technical levels, not just those comfortable editing config files.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -905,7 +1035,7 @@ max_concurrent=4</code></pre>
     <a href="https://github.com/AJCrowley/mpv-synth/" target="_blank">GitHub</a>
     <a href="https://github.com/AJCrowley/mpv-synth/issues" target="_blank">Issues</a>
     <a href="https://github.com/AJCrowley/mpv-synth/releases/latest/download/mpv-synth.zip">Download</a>
-    <a href="https://buymeacoffee.com/ajcrowley" target="_blank">Buy me a coffee</a>
+    <a href="https://buymeacoffee.com/ajcrowley" target="_blank">Support development</a>
   </div>
   <span>Free &amp; open source</span>
 </footer>
@@ -940,7 +1070,7 @@ max_concurrent=4</code></pre>
     });
   });
 
-  // Simplified tab system — find panels by ID directly
+  // Simplified tab system. Find panels by ID directly
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const panelId = btn.dataset.tab;
